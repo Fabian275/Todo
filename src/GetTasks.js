@@ -14,15 +14,32 @@ function GetTasks() {
             .then((data) => {
                 setText(data)
                 setStatus(true)
+
             });
     }
 
-    const removeTasks = () => {
+    const removeTasks = (event) => {
+        console.log(event.currentTarget.id)
 
 
+        fetch(`http://localhost:3000/task/${event.currentTarget.id}`, {
+            method: 'Delete',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(""),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            get()
     }
 
-
+    
 
 
     return (
@@ -30,11 +47,12 @@ function GetTasks() {
             <button onClick={get}>get</button>
             {status == true ?
                 <ul>
-
+                    {console.log(text)}
                     {text.map((text) => (
                         <li >
-                            <button id={text.id}>x</button>
-                            {text.title}</li>))}
+                            <button id={text.id} onClick={removeTasks}>x</button>
+                            {text.title} </li>))}
+
                 </ul>
                 : ""}
         </>
