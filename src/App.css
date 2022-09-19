@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+
+.points {
+  list-style: none;
+  border-bottom: solid;
+  width: 600px;
+  background-color: #d8dce4;
+  color: #51565c;
+  
+}
+
+
+button {
+  
+}
+
+.todoText {
+
+}
+
+.saveBotton{
+ 
+}
+#addNewtask{
+  margin-left: 40px;
+  margin-top: 50px;
+}
+
+.editField {
+  float:inline-end;
+}
+
+
+
+ input {
+  margin-top: 5px;
+}
+
+
+
+#sucsess {
+  visibility: hidden;
+}

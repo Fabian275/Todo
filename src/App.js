@@ -1,17 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import PostTodo from './PostTodo';
+import Login from './Login';
 import GetTasks from './GetTasks';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
 
 
   return (
-  <>
-    <PostTodo />
-    <GetTasks />
-  </>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/TodoList" element={<GetTasks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
