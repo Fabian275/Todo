@@ -99,10 +99,55 @@ function GetTasks() {
         setGet(get + 1)
     }
 
-    const changeCompleted = (event) => {
-        const completed = event.currentTarget.completed;
+    // const changeCompleted = (event) => {
+    //     const completed = event.currentTarget.completed ;
+    //     const currentID = event.currentTarget.parentElement.id;
+    //     const currentText = document.getElementById(`input${currentID}`).value;
+    //     console.log(completed)
+    //     if (event.currentTarget.completed == "true" || event.currentTarget.completed == "false" || event.currentTarget.completed == false) {
+            
+    //         fetch('http://localhost:3000/tasks', {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             "id": currentID,
+    //             "completed": true
+    //         }),
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log('Success:', data);
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error:', error);
+    //         });
+
+    //     setGet(get + 1)
+    //     }
+    //     else if (event.currentTarget.completed == true) {
+    //         fetch('http://localhost:3000/tasks', {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSAlertpleted": false
+    //             }),
+    //         })
+    //             .then((response) => response.json())
+    //             .then((data) => {
+    //                 console.log('Success:', data);
+    //             })
+    //             .catch((error) => {
+    //                 console.error('Error:', error);
+    //             });
+    
+    //         setGet(get + 1)
+    //     }
+
         
-    }
+    // }
 
 
     return (
@@ -123,7 +168,7 @@ function GetTasks() {
                             
                             <button className="editField" onClick={updateTasks}><SaveIcon /></button>
                             <input className="editField" id={`input${tasks.id}`} placeholder="edit..."></input>
-                            {tasks.completed == "true"  ? <button onClick={changeCompleted} className="editField">✅</button> : <button onClick={changeCompleted} className="editField">❌</button>}</li>))}
+                            {tasks.completed == "true"  ? <button  className="editField">✅</button> : <button  className="editField">❌</button>}</li>))}
                     <p id="sucsess"><Alert severity="success">Successfully deleted</Alert></p>
                 </ul>
                 : ""}
