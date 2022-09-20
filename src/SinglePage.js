@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 import SaveIcon from '@mui/icons-material/Save';
 
 
-function GetTasks() {
+function SinglePage() {
 
     const [tasks, setTasks] = useState("");
     const [get, setGet] = useState(0);
@@ -25,49 +25,6 @@ function GetTasks() {
             });
     }, [get]);
 
-    const logout = () => {
-        fetch('http://localhost:3000/auth/cookie/logout', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({}),
-        })
-            .then((response) => {
-                if (response.status === 200) {
-                    window.location = 'http://localhost:3001/Login'
-                } else { }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
-
-    const postnew = () => {
-
-        let newtask = document.getElementById("newtask").value;
-        const data = { title: newtask };
-        if (newtask !== "") {
-            fetch('http://localhost:3000/auth/cookie/tasks', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log('Success:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            setGet(get + 1)
-        } else { document.getElementById("newWarning").style.visibility = 'visible'; }
-    }
-
 
 
 
@@ -85,29 +42,7 @@ function GetTasks() {
             });
     }, [get]);
 
-    const removeTasks = (event) => {
-        console.log(event.currentTarget.parentElement.id)
-
-
-        fetch(`http://localhost:3000/auth/cookie/task/${event.currentTarget.parentElement.id}`, {
-            method: 'delete',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        document.getElementById("sucsess").style.visibility = 'visible';
-
-        setGet(get + 1)
-
-    }
+    
 
 
 
@@ -145,7 +80,7 @@ function GetTasks() {
 
     const changeCompleted = (event) => {
         const currentID = event.currentTarget.parentElement.id;
-        const completed = tasks;
+
 
         for (let i = 0; i < tasks.length; i++) {
             if (currentID == tasks[i].id) {
@@ -204,38 +139,47 @@ function GetTasks() {
     }
 
 
-    const singlePagelink = (event) => {
-        window.location = `http://localhost:3001/todoList/${event.currentTarget.id}`
 
+    const url = window.location.pathname
+    const num = url.substring(10)
+    const [id, setID] = useState(0);
+    const [title, setTitle] = useState("");
+    const [completed, setCompleted] = useState(false);
+    console.log(title)
+    useEffect(() => {
+        for (let xyz = 0; xyz < tasks.length; xyz++) {
+            if (num == tasks[xyz].id) {
+                setID(tasks[xyz].id)
+                
+                setCompleted(tasks[xyz].completed)
+                setTitle(tasks[xyz].title)
+                
+            }
+        }
+    }, [get]);
+
+
+    const goback = () => {
+        window.location = `http://localhost:3001/todoList`
     }
-
-
 
 
     return (
         <><div id="todoPage">
-            <div><button id="logout" onClick={logout}>Logout</button></div>
-            <div id="addNewtask">
-                <input type="text" id="newtask" placeholder="add new Task"></input>
-                <button type="submit" onClick={postnew}>post</button>
-                <form id="newWarning"><Alert severity="info">Please write a todo</Alert></form>
-            </div>
+
 
 
             {tasks !== "" ?
                 <ul>
-                    {console.log(tasks)}
-                    {tasks.map((tasks) => (
-                        <li className="points" id={tasks.id} key={tasks.id}>
-                            <button onClick={removeTasks}><DeleteIcon /></button>
-                            <span className="todoText">{tasks.title}</span>
 
-                            <button id={tasks.id} className="editField" onClick={singlePagelink}>Edit</button>
+                    {
+                        <li className="points" id={id} key={id}>
+                            <button className="backbutton" onClick={goback}>back</button>
+                            <span className="todoText">{title}</span>
+
                             <button className="editField" onClick={updateTasks}><SaveIcon /></button>
-                            <input className="editField" id={`input${tasks.id}`} placeholder="edit..."></input>
-                            {tasks.completed == "true" ? <button className="editField" onClick={changeCompleted}>✅</button> : <button className="editField" onClick={changeCompleted}>❌</button>} 
-                            
-                            </li>))}
+                            <input className="editField" id={`input${id}`} placeholder="edit..."></input>
+                            {completed == "true" ? <button className="editField" onClick={changeCompleted}>✅</button> : <button className="editField" onClick={changeCompleted}>❌</button>}</li>}
                     <form id="sucsess"><Alert severity="success">Successfully deleted</Alert></form>
                 </ul>
                 : ""}
@@ -245,4 +189,4 @@ function GetTasks() {
     );
 }
 
-export default GetTasks;
+export default SinglePage;

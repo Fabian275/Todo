@@ -1,3 +1,30 @@
+# backend: v5 
+# Browser:firefox
+
+# Installieren:
+## 1. `npm install` um alle packages zu installieren
+## 2. backend hizufuegen
+## 3. backend starten mit `npm start`
+## 4. frontend starten mit `npm start` und mit `y` akzeptieren, dass es auf dem prot 3001 laeuft.
+
+
+
+## github https://github.com/Fabian275/Todo
+
+
+commit 4613a546bb7032b861fe3855ceb3bb801629c3b5 (HEAD -> main, origin/main)
+Author: Fabian275 <fabian.baetscher@lernende.bbw.ch>
+Date:   Tue Sep 20 14:20:17 2022 +0200
+
+    Login finished
+
+commit f5992c5d01809f8ffc00ed24f31dbb075bad3726
+Author: Fabian275 <fabian.baetscher@lernende.bbw.ch>
+
+
+
+# kein test
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

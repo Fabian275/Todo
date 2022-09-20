@@ -41,7 +41,7 @@
 .points {
   list-style: none;
   border-bottom: solid;
-  width: 600px;
+  width: 670px;
   background-color: #d8dce4;
   color: #51565c;
   
@@ -87,3 +87,7 @@ button {
   margin: 15px;
 }
 
+.backbutton {
+  height: 32px;
+  ;
+}
