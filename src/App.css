@@ -61,7 +61,7 @@ button {
 }
 #addNewtask{
   margin-left: 40px;
-  margin-top: 50px;
+ 
 }
 
 .editField {
@@ -74,10 +74,16 @@ button {
   margin-top: 5px;
 }
 
-#falseLogin {
+#falseLogin, #allreadyLoggedIn, #sucsess, #newWarning {
   visibility: hidden;
 }
 
-#sucsess {
-  visibility: hidden;
+
+#logout {
+  margin-top: 50px;
+  margin-left: 44em
 }
+#todoPage {
+  margin: 15px;
+}
+
